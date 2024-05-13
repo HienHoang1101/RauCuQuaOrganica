@@ -30,21 +30,30 @@
 		if(array_key_exists('btn_login',$_REQUEST)){
 			$user = khach_hang_select_by_id($ma_kh);
 			if($user){
-				if($user['mat_khau'] == $mat_khau){
-					if($user['vai_tro'] == 1){
-						$_SESSION['user'] = $user;
-						header("location: ../admin/index.php");
-					}
-					if($user['vai_tro'] == 0){
-						$_SESSION['user'] = $user;
-						header("location: ../trang-chinh/index.php");
-					}
-				}
-			}else{
-				echo '<script language="javascript">';
-				echo 'alert("Sai tên tài khoản hoặc mật khẩu")';
-				echo '</script>';
+                if ($user['trang_thai']==1){
+                    if($user['mat_khau'] == $mat_khau){
+                        if($user['vai_tro'] == 1){
+                            $_SESSION['user'] = $user;
+                            header("location: ../admin/index.php");
+                        }
+                        if($user['vai_tro'] == 0){
+                            $_SESSION['user'] = $user;
+                            header("location: ../trang-chinh/index.php");
+                        }
+                    }
+                    else{
+                        echo '<script language="javascript">';
+                        echo 'alert("Sai tên tài khoản hoặc mật khẩu")';
+                        echo '</script>';
+                    }
+                }
+                else{
+                    echo '<script language="javascript">';
+                    echo 'alert("Tài khoản bị khóa")';
+                    echo '</script>';
+                }
 			}
+
 		}
 	?>
 
