@@ -73,12 +73,26 @@
         return pdo_query($sql, $ma_loai);
     }
 
-    function hang_hoa_select_keyword($keyword){
-        $sql = "SELECT * FROM hang_hoa hh "
-                . " JOIN loai_hang lo ON lo.ma_loai=hh.ma_loai "
-                . " WHERE ten_hh LIKE ? OR ten_loai LIKE ?";
-        return pdo_query($sql, '%'.$keyword.'%', '%'.$keyword.'%');
+    function hang_hoa_select_keyword($keyword) {
+        $sql = "SELECT hh.*, lo.ten_loai, (hh.dongia - hh.giamgia) AS gia_cuoi_cung 
+                FROM hang_hoa hh
+                JOIN loai_hang lo ON lo.ma_loai = hh.ma_loai
+                WHERE hh.ten_hh LIKE ? OR lo.ten_loai LIKE ?
+                OR CAST(hh.dongia AS CHAR) LIKE ? OR CAST(hh.giamgia AS CHAR) LIKE ?";
+        $param = '%'.$keyword.'%';
+        return pdo_query($sql, $param, $param, $param, $param);
     }
+
+    function hang_hoa_select_by_price($min_price, $max_price) {
+        $sql = "SELECT * FROM hang_hoa WHERE don_gia >= ? AND don_gia <= ?";
+        $params = array($min_price, $max_price);
+        return pdo_execute($sql, $params);
+    }
+    
+    
+    
+    
+    
 
 
 ?>

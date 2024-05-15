@@ -1,10 +1,14 @@
 <?php
-    require_once ('../../dao/hang-hoa.php');
+require_once('../../dao/hang-hoa.php');
 
-    extract($_REQUEST);
+extract($_REQUEST);
 
-    hang_hoa_delete($ma_hh);
+$result = hang_hoa_delete($ma_hh);
 
-    header('location: hang-hoa-list.php');
+if ($result === true) {
+    echo "Xóa sản phẩm thành công.";
+} else {
+    echo "Không thể xóa sản phẩm. Có thể sản phẩm đang tồn tại trong các hóa đơn khác.";
+}
 
 ?>

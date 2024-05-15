@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,6 +123,22 @@
                     </div>
                     </form>
                 </div>
+
+                <label for="price-filter" style="margin-top:10px">Lọc theo giá:</label>
+                <select id="price-filter">
+                <option value="0-100000">0 - 100,000</option>
+    <option value="100001-200000">100,001 - 200,000</option>
+    <option value="200001-300000">200,001 - 300,000</option>
+    <option value="300001-400000">300,001 - 400,000</option>
+    <option value="400001-500000">400,001 - 500,000</option>
+    <option value="500001-600000">500,001 - 600,000</option>
+    <option value="600001-700000">600,001 - 700,000</option>
+    <option value="700001-800000">700,001 - 800,000</option>
+    <option value="800001-900000">800,001 - 900,000</option>
+    <option value="900001-1000000">900,001 - 1,000,000</option>
+                </select>
+
+
                 <div class="row" style="
     margin-left: 0px;
 ">
@@ -186,7 +205,7 @@
                     extract($item);
 
             ?>
-                <div class="sanpham">
+                <div class="sanpham" data-price="<?=$don_gia?>">
                     <a href="chi-tiet-sp.php?ma_hh=<?=$ma_hh?>"><img src="../../RauCuQuaOrganica/css/admin/images/products/<?=$hinh?>" alt=""></a>
                     <div class="text">
                         <div class="price">
@@ -335,7 +354,28 @@
             }
         })
     </script>
-    
+    <script>
+    // Lắng nghe sự kiện khi người dùng thay đổi giá trị trong dropdown
+    document.getElementById('price-filter').addEventListener('change', function() {
+        // Lấy giá trị được chọn trong dropdown
+        var selectedValue = this.value;
+        
+        // Lặp qua tất cả các sản phẩm và ẩn hoặc hiển thị tùy thuộc vào giá trị được chọn
+        var products = document.querySelectorAll('.sanpham');
+        products.forEach(function(product) {
+            var price = parseInt(product.dataset.price); // Lấy giá từ thuộc tính data-price
+            
+            // Kiểm tra xem sản phẩm có nằm trong khoảng giá được chọn hay không
+            if (selectedValue === '0-100000' && price <= 100000) {
+                product.style.display = 'block'; // Hiển thị sản phẩm
+            } else if (selectedValue === '100001-200000' && price > 100000 && price <= 200000) {
+                product.style.display = 'block'; // Hiển thị sản phẩm
+            } else {
+                product.style.display = 'none'; // Ẩn sản phẩm
+            }
+        });
+    });
+</script>
     <script src=" https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>

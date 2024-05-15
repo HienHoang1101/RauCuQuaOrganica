@@ -134,12 +134,12 @@
                                         <?php
                                             if($tinh_trang == 0){
                                                 echo '<button class="btn btn-warning name="thanh_toan">';
-                                                echo "Chưa thanh toán";
+                                                echo "Chưa giao";
                                                
                                             }
                                             else if($tinh_trang == 1){
                                                 echo '<button class="btn btn-primary name="thanh_toan">';
-                                                echo "Đã thanh toán ";
+                                                echo "Đã giao";
                                                 
                                             }
                                             else   {

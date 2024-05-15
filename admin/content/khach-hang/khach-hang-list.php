@@ -140,7 +140,7 @@
                                     } ?></td>
                                     <td> 
                                         <a href="khach-hang-update.php?ma_kh=<?=$ma_kh?>"><button class="btn btn-primary">Sửa</button></a>
-                                        <a onclick = "return confirm('Bạn có chắc chắn muốn xóa ?')" href="khach-hang-delete.php?ma_kh=<?=$ma_kh?>"><button class="btn btn-danger">Xóa</button></a>
+                                        <a onclick = "return confirm('Bạn có chắc chắn muốn xóa ?')" href="khach-hang-delete.php?ma_kh=<?=$ma_kh?>"><button class="btn btn-danger">Ẩn</button></a>
                                     </td>
                                   </tr>
                                 <?php } ?>

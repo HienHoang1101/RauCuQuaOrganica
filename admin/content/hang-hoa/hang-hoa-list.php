@@ -1,3 +1,18 @@
+<?php
+// Khai báo các biến và hàm cần thiết
+$so_hang_hoa_tren_trang = 10; // Số lượng hàng hóa trên mỗi trang
+$trang_hien_tai = isset($_GET['page']) ? $_GET['page'] : 1; // Lấy trang hiện tại từ tham số truy vấn URL
+$offset = ($trang_hien_tai - 1) * $so_hang_hoa_tren_trang; // Tính toán OFFSET cho truy vấn SQL
+
+// Truy vấn cơ sở dữ liệu với OFFSET và LIMIT
+require_once ('../../dao/hang-hoa.php');
+$items = hang_hoa_select_all_limit($so_hang_hoa_tren_trang, $offset);
+
+// Tính tổng số hàng hóa
+$tong_so_hang_hoa = hang_hoa_count_all();
+$tong_so_trang = ceil($tong_so_hang_hoa / $so_hang_hoa_tren_trang);
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -102,11 +117,6 @@
                             <p>Dưới đây là danh sách các hàng hóa đã được thêm vào: </p>
 
                             <!-- /. XỬ LÝ CODE PHP  -->
-                            <?php
-                                require_once ('../../dao/hang-hoa.php');
-                                
-                                $items = hang_hoa_select_all();
-                            ?>
                             <!-- /. CONTENT  -->
                             <table class="table table-hover">
                                 <thead>
@@ -137,7 +147,19 @@
                                 <?php } ?>
                                 </tbody>
                               </table>
-                            <a href="hang-hoa-new.php"><button class="btn btn-danger">Thêm mới</button></a>
+                              <div>
+                              <a href="hang-hoa-new.php"><button class="btn btn-danger">Thêm mới</button></a>
+
+                                </div>
+                              <ul class="pagination justify-content-center">
+    <?php for ($i = 1; $i <= $tong_so_trang; $i++): ?>
+        <li <?php if ($i == $trang_hien_tai) echo 'class="active"'; ?>>
+            <a href="?page=<?= $i ?>"><?= $i ?></a>
+        </li>
+    <?php endfor; ?>
+</ul>
+
+                           
                         </div>
 		</div>
             </div>
