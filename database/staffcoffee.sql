@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `binh_luan`
 --
-
 CREATE TABLE `binh_luan` (
   `ma_bl` int(11) NOT NULL,
   `ma_kh` varchar(50) NOT NULL,

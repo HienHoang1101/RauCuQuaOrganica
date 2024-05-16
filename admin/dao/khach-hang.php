@@ -23,7 +23,7 @@
     }
 
     function khach_hang_select_all(){
-        $sql = "SELECT * FROM khach_hang";
+        $sql = "SELECT * FROM khach_hang where vai_tro!=1";
         return pdo_query($sql);
     }
 
