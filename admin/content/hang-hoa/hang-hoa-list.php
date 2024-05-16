@@ -141,7 +141,7 @@ $tong_so_trang = ceil($tong_so_hang_hoa / $so_hang_hoa_tren_trang);
                                     <td><?=$giam_gia?> <sup>%</sup></td>
                                     <td> 
                                         <a href="hang-hoa-update.php?ma_hh=<?=$ma_hh?>"><button class="btn btn-primary">Sửa</button></a>
-                                        <a onclick = "return confirm('Bạn có chắc chắn muốn xóa ?')" href="hang-hoa-delete.php?ma_hh=<?=$ma_hh?>"><button class="btn btn-danger">Xóa</button></a>
+                                        <a onclick = "return confirm('Bạn có chắc chắn muốn xóa ?')" href="hang-hoa-delete.php?action=delete&ma_hh=<?=$ma_hh?>"><button class="btn btn-danger">Xóa</button></a>
                                     </td>
                                   </tr>
                                 <?php } ?>

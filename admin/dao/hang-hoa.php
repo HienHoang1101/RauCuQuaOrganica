@@ -15,9 +15,9 @@
     function hang_hoa_delete($ma_hh) {
         $sql_check_foreign_key = "SELECT COUNT(*) FROM hoa_don_chi_tiet WHERE ma_hh = ?";
         $count = pdo_query_value($sql_check_foreign_key, $ma_hh);
-    
+
         if ($count > 0) {
-            // Nếu có bản ghi trong bảng hoa_don_chi_tiet tham chiếu đến sản phẩm này, thông báo không thể xóa
+//            $sql = "select * from hang_hoa"
         } else {
             // Nếu không có bản ghi nào tham chiếu đến sản phẩm này, tiến hành xóa sản phẩm
             $sql = "DELETE FROM hang_hoa WHERE ma_hh=?";
@@ -30,7 +30,7 @@
             }
         }
     }
-        
+
 
     function hang_hoa_select_all(){//hàm lấy all thông tin sp trong bảng hh
         $sql = "SELECT * FROM hang_hoa ORDER BY ma_hh DESC";//lấy dữ liệu từ mysql
@@ -90,7 +90,7 @@
     }
 
     function hang_hoa_select_all_limit($limit, $offset) {
-        $sql = "SELECT * FROM hang_hoa ORDER BY ma_hh DESC LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM hang_hoa where trang_thai!=0 ORDER BY ma_hh DESC LIMIT $limit OFFSET $offset";
         return pdo_query($sql);
     }
 
